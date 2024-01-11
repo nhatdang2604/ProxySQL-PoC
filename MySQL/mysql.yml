@@ -29,4 +29,16 @@ services:
     ports:
       - "${MYSQL_SLAVE_1_PORT}:3307"
   
-
+  mysql_slave_2:
+    env_file: ./.env
+    build:
+      context:    .
+      dockerfile: Dockerfile
+      args:
+        - MYSQL_DATABASE=${MYSQL_SLAVE_2_DATABASE}
+        - MYSQL_USER=${MYSQL_SLAVE_2_USER}
+        - MYSQL_PASSWORD=${MYSQL_SLAVE_2_PASSWORD}
+        - MYSQL_ROOT_PASSWORD=${MYSQL_SLAVE_2_ROOT_PASSWORD}
+        - MYSQL_PORT=${MYSQL_SLAVE_2_PORT}
+    ports:
+      - "${MYSQL_SLAVE_2_PORT}:3308"
